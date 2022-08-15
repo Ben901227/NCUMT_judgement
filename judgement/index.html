@@ -101,7 +101,8 @@
                     var energyScore = Number(calculateEnergy(energy.value, water.value));
                     var score = levelScore *1.5 + dayScore + energyScore;
                     var rank = calcuateRank(score);
-                    showcontent(score, rank);
+                
+                    showcontent(levelScore, dayScore, energyScore, score, rank);
                 
                 }
                     
@@ -147,7 +148,7 @@
                     alert("總天數算錯了喔，請修改一下");
                     return false;
                 }
-                if(water > sum){
+                if(Number(water) > Number(sum)){
                     alert("背水天數不可能大於總天數喔，請你修改一下:)");
                     return false;
                 }
@@ -196,8 +197,10 @@
                     rank = "S+";
                 return rank;
             }
-            function showcontent(score, rank){
-                var msg = "分數為：<a>" + score.toFixed(1) + "</a><p>難度等級：<a>" + rank + "</a></p>";
+
+            function showcontent(levelScore, dayScore, energyScore, score, rank){
+                var msg = "路況分數：<a>" + levelScore.toFixed(1) + "</a> 天數分數：<a>" + dayScore.toFixed(1) + " </a>" + "體力分數：<a>" + energyScore.toFixed(1) + " </a>" + 
+                    "<p>分數為：<a>" + score.toFixed(1) + "</a></p><p>難度等級：<a>" + rank + "</a></p>";
 				document.getElementById("Show").innerHTML = msg;
 			}
        </script>
@@ -362,7 +365,7 @@
                 </tbody>
                 <tfoot style = "background-color:cornflowerblue">
                     <tr>
-                        <td colspan="3">需一半以上天數達到上述條件，多背非行動水大於六小時 2/日。</td>
+                        <td colspan="3">需一半以上天數達到上述條件，多背非行動水大於六小時 +2/日。</td>
                     </tr>
                 </tfoot>
             </table>
